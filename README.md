@@ -5,7 +5,7 @@ Deploy Perl applications in seconds.
 
 ## Step 1
 
-Write an app:
+Write an app (`app.pl`):
 
 ```perl
 #!/usr/bin/env perl
@@ -34,7 +34,7 @@ Welcome to the Mojolicious real-time web framework!
 
 ## Step 2
 
-Create a Makefile.PL with your dependencies:
+Create a `Makefile.PL` with your dependencies:
 
 ```perl
 use strict;
@@ -54,7 +54,7 @@ WriteMakefile(
 
 ## Step 3
 
-Create an executable file called Perloku which runs a server on the port
+Create an executable file called `Perloku` which runs a server on the port
 given as an enviroment variable:
 
 ```sh
@@ -65,20 +65,29 @@ given as an enviroment variable:
 Test that you can start the server:
 
 ```sh
+chmod +x app.pl
 chmod +x Perloku
-PORT=3000 ./Perloku
 ```
 
 ## Step 4
 
-Deploy:
+Create a `Procfile`:
+
+```
+web: ./Perloku
+```
+
+## Step 5
+
+Push & Deploy:
 
 ```sh
 git init
 git add .
 git commit -m "Initial version"
-heroku create -s cedar --buildpack http://github.com/judofyr/perloku.git
-git push heroku master
+cctrlapp APP_NAME create custom --buildpack http://github.com/fern4lvarez/perlcctrl.git
+cctrlapp APP_NAME/default push
+cctrlapp APP_NAME/default deploy
 ```
 
 Watch:
@@ -90,32 +99,28 @@ Compressing objects: 100% (4/4), done.
 Writing objects: 100% (5/5), 808 bytes, done.
 Total 5 (delta 0), reused 0 (delta 0)
 
------> Heroku receiving push
------> Fetching custom buildpack... done
------> Perloku app detected
+-----> Receiving push
+-----> Custom buildpack provided
 -----> Vendoring Perl
        Using Perl 5.16.2
 -----> Installing dependencies
-       --> Working on /tmp/build_19tm6pb8ch1qa
-       Configuring /tmp/build_19tm6pb8ch1qa ... OK
+       --> Working on /srv/tmp/builddir
+       Configuring /srv/tmp/builddir ... OK
        ==> Found dependencies: Mojolicious
        --> Working on Mojolicious
-       Fetching http://search.cpan.org/CPAN/authors/id/T/TE/TEMPIRE/Mojolicious-2.48.tar.gz ... OK
-       Configuring Mojolicious-2.48 ... OK
-       Building Mojolicious-2.48 ... OK
-       Successfully installed Mojolicious-2.48
-       <== Installed dependencies for /tmp/build_19tm6pb8ch1qa. Finishing.
+       Fetching http://www.cpan.org/authors/id/S/SR/SRI/Mojolicious-3.97.tar.gz ... OK
+       Configuring Mojolicious-3.97 ... OK
+       Building Mojolicious-3.97 ... OK
+       Successfully installed Mojolicious-3.97
+       <== Installed dependencies for /srv/tmp/builddir. Finishing.
        1 distribution installed
        Dependencies installed
------> Discovering process types
-       Procfile declares types   -> (none)
-       Default types for Perloku -> web
------> Compiled slug size is 12.4MB
------> Launching...gi done, v5
-       http://perloku-example.herokuapp.com deployed to Heroku
-
-To git@heroku.com:perloku-example.git
+-----> Building image
+-----> Uploading image (13M)
+       
+To ssh://APP_NAME@cloudcontrolled.com/repository.git
  * [new branch]      master -> master
+
 ```
 
-[Enjoy!](http://perloku-example.herokuapp.com)
+[Enjoy!](http://perlcctrlexample.cloudcontrolled.com)
