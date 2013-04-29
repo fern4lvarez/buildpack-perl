@@ -85,7 +85,7 @@ Push & Deploy:
 git init
 git add .
 git commit -m "Initial version"
-cctrlapp APP_NAME create custom --buildpack http://github.com/fern4lvarez/perlcctrl.git
+cctrlapp APP_NAME create custom --buildpack http://github.com/fern4lvarez/buildpack-perl.git
 cctrlapp APP_NAME/default push
 cctrlapp APP_NAME/default deploy
 ```
