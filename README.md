@@ -1,4 +1,4 @@
-Perloku
+Perl buildpack
 =======
 
 Deploy Perl applications in seconds.
@@ -54,7 +54,7 @@ WriteMakefile(
 
 ## Step 3
 
-Create an executable file called `Perloku` which runs a server on the port
+Create an executable file called `Perlrun` which runs a server on the port
 given as an enviroment variable:
 
 ```sh
@@ -66,7 +66,7 @@ Test that you can start the server:
 
 ```sh
 chmod +x app.pl
-chmod +x Perloku
+chmod +x Perlrun
 ```
 
 ## Step 4
@@ -74,7 +74,7 @@ chmod +x Perloku
 Create a `Procfile`:
 
 ```
-web: ./Perloku
+web: ./Perlrun
 ```
 
 ## Step 5
